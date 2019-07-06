@@ -8,20 +8,22 @@
 * **Boolean类型：** Boolean有两种取值true和false。
 * **String类型：** String类型的正式解释是一个16位无符号整数类型的序列，它实际上用来表示以UTF-16编码的文本信息。请注意区分JavaScript字符串对象和基本字符串值.(对于Boolean和Numbers也同样如此.)字符串字面量 (通过单引号或双引号定义)和直接调用String方法(没有通过new生成字符串对象实例)的字符串都是基本字符串。JavaScript会自动将基本字符串转换为字符串对象，只有将基本字符串转化为字符串对象之后才可以使用字符串对象的方法。当基本字符串需要调用一个字符串对象才有的方法或者查询值的时候(基本字符串是没有这些方法的)，JavaScript 会自动将基本字符串转化为字符串对象并且调用相应的方法或者执行查询。如：
 ```
-        var s_prim = "foo";
-        var s_obj = new String(s_prim);
+    var s_prim = "foo";
+    var s_obj = new String(s_prim);
 
-        console.log(typeof s_prim); // Logs "string"
-        console.log(typeof s_obj);  // Logs "object"
+    console.log(typeof s_prim); // Logs "string"
+    console.log(typeof s_obj);  // Logs "object"
 ```
 当使用 eval时，基本字符串和字符串对象也会产生不同的结果。eval 会将基本字符串作为源代码处理; 而字符串对象则被看作对象处理, 返回对象。 例如：
 ```
-        s1 = "2 + 2";               // creates a string primitive
-        s2 = new String("2 + 2");   // creates a String object
-        console.log(eval(s1));      // returns the number 4
-        console.log(eval(s2));      // returns the string "2 + 2"
+    s1 = "2 + 2";               // creates a string primitive
+    s2 = new String("2 + 2");   // creates a String object
+    console.log(eval(s1));      // returns the number 4
+    console.log(eval(s2));      // returns the string "2 + 2"
 ```
 由于上述原因, 当一段代码在需要使用基本字符串的时候却使用了字符串对象就会导致执行失败(虽然一般情况下程序员们并不需要考虑这样的问题)。利用 valueOf 方法，我们可以将字符串对象转换为其对应的基本字符串。需要注意的是，JavaScript 的字符串是不可变的（immutable），String 类定义的方法都不能改变字符串的内容。像String.toUpperCase() 这样的方法，返回的是全新的字符串，而不是修改原始字符串。
+* **Number类型：** 根据 ECMAScript 标准，JavaScript 中只有一种数字类型：基于 IEEE 754 标准的双精度 64 位二进制格式的值（-(263 -1) 到 263 -1）。它并没有为整数给出一种特定的类型。除了能够表示浮点数外，还有一些带符号的值：+Infinity，-Infinity 和 NaN (非数值，Not-a-Number)。要检查值是否大于或小于 +/-Infinity，你可以使用常量 Number.MAX_VALUE 和 Number.MIN_VALUE。另外在 ECMAScript 6 中，你也可以通过 Number.isSafeInteger() 方法还有 Number.MAX_SAFE_INTEGER 和 Number.MIN_SAFE_INTEGER 来检查值是否在双精度浮点数的取值范围内。 超出这个范围，JavaScript 中的数字不再安全了，也就是只有 second mathematical interger 可以在 JavaScript 数字类型中正确表现。
+* **Object类型：** 在计算机科学中, 对象是指内存中的可以被 标识符引用的一块区域。
 
 2.**question**: JavaScript对象的底层数据结构是什么
 
